@@ -97,6 +97,23 @@
             $statement->execute($data);
             return true;
         }
+
+        public function listarUsuarios()
+        {
+            try
+            {
+                
+                include("./db/conn.php");
+                $sql = "SELECT * FROM usuario ORDER BY idUsuario DESC";
+                $data = $conn->query($sql)->fetchAll();
+              
+                return $data;
+            }
+            catch (Exception $e)
+            {
+                return 0;
+            }
+        }
     }
 
 ?>

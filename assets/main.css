@@ -142,7 +142,6 @@ nav
 
 .forms-internos{
     width: 40%;
-    margin: 4% 0;
     padding: 2%;
     border: 1px solid var(--cor-secundaria);
     border-radius: 10px;
@@ -159,7 +158,8 @@ nav
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
+        gap: 24px;
     }
     
     .apresentacao
@@ -178,5 +178,15 @@ nav
         padding: 2%;
         border: 1px solid var(--cor-secundaria);
         border-radius: 10px;
+    }
+
+    .lista-dados
+    {
+        width: 60%;
+    }
+
+    th, td
+    {
+        padding: 12px 24px 0 0;
     }
 }

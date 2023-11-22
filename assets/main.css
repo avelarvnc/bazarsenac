@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root
+{
+    --cor-principal: #1e4684;
+    --cor-secundaria: #a2c037;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    border-bottom: 4px solid var(--cor-secundaria);
+}
+
+h1{
+    margin: 4% 0;
+    font-size: 2rem;
+    color: var(--cor-secundaria);
+}
+
+h2,h3
+{
+    margin: 4% 0;
+    color: var(--cor-principal);
+}
+
+p, li{
+    line-height: 1.5;;
+}
+
+input
+{
+    margin: 1% 0;
+}
+
+ol{
+    padding-left: 5%;
+}
+
+main{
+    padding: 1% 4%;
+}
+
+.flex-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo
+{
+    width: 70%;
+    height: 70%;
+}
+
+.botao-ancora{
+    color: #FFF;
+    background-color: var(--cor-principal);
+    border-radius: 5px;;
+    font-size: 1.2rem;
+    padding: 1%;
+    text-decoration: none;
+    
+}
+
+.center
+{
+    text-align: center;
+}
+
+.apresentacao
+{
+    width: 100%;
+}
+
+
+.banner-vertical
+{
+    display: none;
+}
+
+.area-login{
+    width: 80%;
+    margin: 4% auto;
+    padding: 2%;
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 10px;
+}
+
+.input-comum
+{
+    width: 100%;
+    padding: 2%;
+    border-radius: 5px;
+    border: 1px solid var(--cor-secundaria);
+}
+
+.botao-form
+{
+    background-color: var(--cor-secundaria);
+    color: #FFF;
+    padding: 2%;
+    width: 40%;
+    border-radius: 5px;
+    border: none;
+}
+
+@media (min-width: 1280px)
+{
+    
+    main{
+        padding: 1% 2%;
+    }
+    .flex-container
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .apresentacao
+    {
+        width: 60%;
+    }   
+
+    .banner-vertical
+    {
+        display: block;
+    }
+
+    .area-login{
+        width: 40%;
+        margin: 2% auto;
+        padding: 2%;
+        border: 1px solid var(--cor-secundaria);
+        border-radius: 10px;
+    }
+}

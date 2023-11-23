@@ -55,13 +55,27 @@
                         }
                         else
                         {
-                            session_start();
-                            $_SESSION["unome"] = $dados["nome"];
-                            $_SESSION["uid"] = $dados["idUsuario"];
-                            $_SESSION["perfil"] = $dados["perfil"];
-                                                        
+                            // session_start();
+                            // $_SESSION["unome"] = $dados["nome"];
+                            // $_SESSION["uid"] = $dados["idUsuario"];
+                            // $_SESSION["perfil"] = $dados["perfil"];
+
+                            //nome do usuario
+                            $cookie_name = "unome"; 
+                            $cookie_value = $dados["nome"];
+                            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+                       
+                            //id 
+                            $cookie_name = "uid"; 
+                            $cookie_value = $dados["idUsuario"];
+                            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+                            //perfil
+                            $cookie_name = "perfil"; 
+                            $cookie_value = $dados["perfil"];
+                            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
                             header("Location: areaRestrita.php");
-                            
                         }
                     }
                 }

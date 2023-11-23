@@ -1,10 +1,15 @@
 <?php
-    session_start();
+    // session_start();
+
     
-    if (!isset($_SESSION["uid"]))
-    {
+    if(!isset($_COOKIE["uid"])) {
+        echo "
+            <script type='text/javascript'>
+                alert('Sua autenticação expirou. Acesse novamente.');
+            </script>
+                ";
         header("Location: login.php");
-    }
+      } 
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +29,7 @@
 
         include("components/header-interno.html");
 
-        if ($_SESSION["perfil"] == 2)
+        if ($_COOKIE["perfil"] == 2)
         {
             include("components/menu-adm.html");
         }
@@ -34,14 +39,14 @@
     <section class="area-login">
         <div class="center">
             <h1>Bazar Sustentável</h1>
-            <p>Olá, <?php echo $_SESSION["unome"]; ?>!</p>
-            <p>Seu código de usuário é: <?php echo "<strong>" . $_SESSION["uid"] . "</strong>"; ?>.</p>
+            <p>Olá, <?php echo $_COOKIE["unome"]; ?>!</p>
+            <p>Seu código de usuário é: <?php echo "<strong>" . $_COOKIE["uid"] . "</strong>"; ?>.</p>
             <p> Utilize esse código para fazer suas doações e compras no bazar.</p><br>
             <p>Você possui 
                 <?php
                     include_once("class/Usuario.php");
                     $u = new Usuario();
-                    $u->buscarUsuario($_SESSION["uid"]);
+                    $u->buscarUsuario($_COOKIE["uid"]);
                     echo $u->getSaldo();
                 ?>
             Senacoins.</p>

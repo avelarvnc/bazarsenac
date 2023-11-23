@@ -51,12 +51,7 @@
                     {
                         echo "<p>Ocorreu um erro inesperado. Entre em contato com o administrador.</p>";
                     }
-                    
-                    // echo $u->mudarSenha($_REQUEST["id"], $_REQUEST["senha"]) == true
-                    //     ? "<p>Senha alterada com sucesso.<p> <a href='login.php'>Clique aqui e acesse novamente</a>' "
-                    //     : "<p>Ocorreu um erro inesperado. Entre em contato com o administrador.</p>";
-
-                    
+                                       
                 }
             ?>
 

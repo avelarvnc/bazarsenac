@@ -1,13 +1,16 @@
 <?php
-    session_start();
+    // session_start();
+
     
-    if (!isset($_SESSION["uid"]))
-    {
+    if(!isset($_COOKIE["uid"])) {
+        echo "
+            <script type='text/javascript'>
+                alert('Sua autenticação expirou. Acesse novamente.');
+            </script>
+                ";
         header("Location: login.php");
-    }
+      } 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,7 +29,7 @@
 
     include("components/header-interno.html");
 
-    if ($_SESSION["perfil"] == 2)
+    if ($_COOKIE["perfil"] == 2)
     {
         include("components/menu-adm.html");
     }

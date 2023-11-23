@@ -4,7 +4,7 @@ CREATE TABLE usuario
     nome			VARCHAR(100),
     email			VARCHAR(100),
     perfil			VARCHAR(100),
-    saldo			INT,
+    saldo			INT DEFAULT 0,
     situacao		INT,
     senha			VARCHAR(100)
 );

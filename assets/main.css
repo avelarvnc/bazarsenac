@@ -47,7 +47,7 @@ ol{
 
 label
 {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 }
 
 main{
@@ -126,6 +126,7 @@ nav
 {
     width: 100%;
     padding: 2%;
+    margin-top: 8px;
     border-radius: 5px;
     border: 1px solid var(--cor-secundaria);
 }

@@ -23,9 +23,9 @@
 
         <form method="POST">
             <label for="email">E-mail:</label><br>
-            <input type="email" name="email" minlength="3" class="input-comum" placeholder="Informe seu e-mail coorporativo"><br><br>
+            <input type="email" name="email" minlength="3" class="input-comum" placeholder="Informe seu e-mail coorporativo" required><br><br>
             <label for="senha">Senha:</label><br>
-            <input type="password" name="senha" minlength="3" class="input-comum" placeholder="Digite sua senha"><br><br>
+            <input type="password" name="senha" minlength="3" class="input-comum" placeholder="Digite sua senha" required><br><br>
             <input type="submit" value="Entrar" name="entrar" class="botao-form">    
             
             <?php

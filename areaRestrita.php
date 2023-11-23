@@ -34,7 +34,9 @@
     <section class="area-login">
         <div class="center">
             <h1>Bazar Sustentável</h1>
-            <p>Olá, <?php echo $_SESSION["unome"]; ?>!</p><br>
+            <p>Olá, <?php echo $_SESSION["unome"]; ?>!</p>
+            <p>Seu código de usuário é: <?php echo "<strong>" . $_SESSION["uid"] . "</strong>"; ?>.</p>
+            <p> Utilize esse código para fazer suas doações e compras no bazar.</p><br>
             <p>Você possui 
                 <?php
                     include_once("class/Usuario.php");

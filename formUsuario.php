@@ -41,16 +41,16 @@
             <form method="POST">
                 
                 <label for="nome">Nome:</label><br>
-                <input type="text" name="nome" placeholder="Digite o nome do cliente" minlength="3" class="input-comum"><br><br>
+                <input type="text" name="nome" placeholder="Digite o nome do cliente" minlength="3" class="input-comum" required><br><br>
                 <label for="email">E-mail:</label><br>
-                <input type="email" name="email" placeholder="Digite o e-mail corporativo do cliente" minlength="3" class="input-comum"><br><br>
+                <input type="email" name="email" placeholder="Digite o e-mail corporativo do cliente" minlength="3" class="input-comum" required><br><br>
                 <label for="perfil">Perfil:</label><br>
                 <select name="perfil" class="input-comum">
                     <option value="">Selecione um perfil</option>
                     <option value="1">Cliente</option>
                     <option value="2">Colaborador</option>
                 </select><br><br>
-                <input type="submit" value="Cadastrar" name="cadastrar" class="botao-form">
+                <input type="submit" value="Cadastrar" name="cadastrar" class="botao-form" onclick="return confirmacao()">
 
                 <?php
                     if (isset($_REQUEST["cadastrar"]))
@@ -60,7 +60,10 @@
                         $u->create($_REQUEST["nome"], $_REQUEST["email"], $_REQUEST["perfil"]);
 
                         echo $u->inserirUsuario() == true
-                            ? "<p>Usuário cadastrado</p>"
+                            ? "<p>Usuário cadastrado</p>
+                                <script type='text/javascript'>
+                                alert('Usuário cadastrado.');
+                                </script>"
                             : "<p>Ocorreu um erro inesperado. Favor entrar em contato com o administrador.</p>";
 
                     }
@@ -80,6 +83,7 @@
                     {
                         echo "<table>
                                 <tr>
+                                    <th>Código</th>
                                     <th>Nome</th>
                                     <th>E-mail</th>
                                     <th>Saldo</th>
@@ -89,6 +93,7 @@
                         foreach($lista as $i)
                         {
                             echo "<tr>";
+                            echo "<td>" . $i["idUsuario"] . "</td>";
                             echo "<td>" . $i["nome"] . "</td>";
                             echo "<td>" . $i["email"] . "</td>";
                             echo "<td>" . $i["saldo"] . "</td>";

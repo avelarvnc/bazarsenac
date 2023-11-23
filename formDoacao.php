@@ -54,45 +54,67 @@
                     ?>
                 </select><br><br>
                 <label for="quantidade">Quantidade:</label><br>
-                <input type="number" name="quantidade" min="1" placeholder="Informe a quantidade de itens doados" class="input-comum"><br><br>
-                <input type="submit" value="Cadastrar" name="cadastrar" class="botao-form">
+                <input type="number" name="quantidade" min="1" placeholder="Informe a quantidade de itens doados" class="input-comum" required><br><br>
+                <label for="usuario">Código de cliente:</label>
+                <input type="text" name="usuario" minlength="1" placeholder="Solicite o código do usuário" class="input-comum" required ><br><br>
+                <input type="submit" value="Cadastrar" name="cadastrar" class="botao-form" onclick="return confirmacao()">
+
+                <?php
+                    if (isset($_REQUEST["cadastrar"]))
+                    {
+                        include_once("class/Item.php");
+                        $i = new Item();
+                        $i->create($_REQUEST["quantidade"], $_REQUEST["categoria"], $_REQUEST["usuario"]);
+
+                        echo $i->inserirItem() == true
+                            ? "<p>Item cadastrado</p>
+                                <script type='text/javascript'>
+                                alert('Item cadastrado.');
+                                </script>"
+                            : "<p>Ocorreu um erro inesperado. Favor entrar em contato com o administrador.</p>";
+
+                    }
+                ?>
+                
 
             </form>
             </div>
 
             <div class="lista-dados">
                 <h2>Últimos itens doados</h2>
+                <p>(50 últimos registros)</p>
                 
                 <?php
-        //             include_once("class/Usuario.php");
-        //             $u = new Usuario();
-        //             $lista = $u->listarUsuarios();
+                    include_once("class/Item.php");
+                    $i = new Item();
+                    $lista = $i->listarItens();
 
-        //             if ($lista != 0)
-        //             {
-        //                 echo "<table>
-        //                         <tr>
-        //                             <th>Nome</th>
-        //                             <th>E-mail</th>
-        //                             <th>Saldo</th>
-        //                         </tr>
-        //                 ";
+                    if ($lista != 0)
+                    {
+                        echo "<table>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Quantidade</th>
+                                    <th>Doador</th>
+                                    <th>Data de entrega</th>
+                                </tr>
+                        ";
 
-        //                 foreach($lista as $i)
-        //                 {
-        //                     echo "<tr>";
-        //                     echo "<td>" . $i["nome"] . "</td>";
-        //                     echo "<td>" . $i["email"] . "</td>";
-        //                     echo "<td>" . $i["saldo"] . "</td>";
-        //                     echo "<td> <a href='ativarResetUsuario.php?uid=" . $i["idUsuario"] . "' onclick='return confirmacao()'>Redefinir senha</a></td>";                    
-        //                     echo "</tr>";
-        //                 }
+                        foreach($lista as $i)
+                        {
+                            echo "<tr>";
+                            echo "<td>" . $i["nomeItem"] . "</td>";
+                            echo "<td>" . $i["quantidade"] . "</td>";
+                            echo "<td>" . $i["nomeUsuario"] . "</td>";
+                            echo "<td>" . $i["dtEntrega"] . "</td>";             
+                            echo "</tr>";
+                        }
 
-        //                 echo "</table>";
-        //             }
+                        echo "</table>";
+                    }
 
 
-        // ?>
+        ?>
 
             </div>
         </section>

@@ -81,6 +81,26 @@
             </div>
 
             <div class="lista-dados">
+                <h2>Top 3 doadores</h2>
+                <?php
+                    include_once("class/Item.php");
+                    $i = new Item();
+                    $lista = $i->rankingDoacao();
+
+                    if ($lista != 0)
+                    {
+                        echo "<ol>";
+                        foreach($lista as $i)
+                        {
+                            echo "<li>" . $i["nomeUsuario"] . " - Total de doações: " . $i["quantidade"] . "</li>";
+                        }
+                        echo "</ol>";
+
+                    
+                    }
+
+                    ?>
+
                 <h2>Últimos itens doados</h2>
                 <p>(50 últimos registros)</p>
                 

@@ -13,6 +13,11 @@
             $this->valor = $_valor;
         }
 
+        public function getValor()
+        {
+            return $this->valor;
+        }
+
         public function listarCategoria()
         {
             try
@@ -28,6 +33,21 @@
             {
                 return 0;
             }
+        }
+
+        public function buscarCategoria($_id)
+        {
+            include("db/conn.php");
+
+            $sql = "SELECT * FROM categoria WHERE idCategoria = $_id";
+            $data = $conn->query($sql)->fetchAll();
+
+            foreach ($data as $item) {
+                $this->nome = $item["nome"];
+                $this->valor = $item["valor"];
+            }
+
+            return true;
         }
 
     }

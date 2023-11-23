@@ -49,5 +49,58 @@
                 return 0;
             }
         }
+
+        public function venderItem($_vendedor)
+        {
+            include("db/conn.php");
+            $sql = "CALL piVenda(:vendedor, :comprador, :quantidade, :categoria)";
+
+            $data = [
+                'vendedor' => $_vendedor,
+                'comprador' => $this->usuario,
+                'quantidade' => $this->quantidade,
+                'categoria' => $this->categoria
+                
+            ];
+          
+            $statement = $conn->prepare($sql);
+            $statement->execute($data);
+            return true;          
+        }
+
+        public function listarVendas()
+        {
+            try
+            {
+                
+                include("./db/conn.php");
+                $sql = "SELECT * FROM vwVendas ORDER BY dtVenda DESC LIMIT 50";
+                $data = $conn->query($sql)->fetchAll();
+              
+                return $data;
+            }
+            catch (Exception $e)
+            {
+                return 0;
+            }
+        }
+
+        public function rankingDoacao()
+        {
+            try
+            {
+                
+                include("./db/conn.php");
+                $sql = "SELECT nomeUsuario, SUM(quantidade) AS quantidade FROM vwitens GROUP BY nomeUsuario ORDER BY 2 DESC LIMIT 3";
+                $data = $conn->query($sql)->fetchAll();
+              
+                return $data;
+            }
+            catch (Exception $e)
+            {
+                return 0;
+            }
+        }
+
     }
 ?>

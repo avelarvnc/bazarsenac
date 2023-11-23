@@ -92,6 +92,23 @@
                 return -1;
             }   
         }
+
+        public function resetSenha($_id)
+        {
+            include_once("db/conn.php");
+            $sql = "UPDATE usuario SET senha = :senha, situacao = :situacao WHERE idUsuario = :id";
+
+            $data = [
+                'senha' => md5("S3n@c2023"),
+                'situacao' => "0",
+                'id' => $_id
+            ];
+          
+            $statement = $conn->prepare($sql);
+            $statement->execute($data);
+            return true;
+        }
+
         
         public function mudarSenha($_id, $_senha)
         {

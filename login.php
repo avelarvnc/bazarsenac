@@ -59,7 +59,7 @@
                             $_SESSION["unome"] = $dados["nome"];
                             $_SESSION["uid"] = $dados["idUsuario"];
                             $_SESSION["perfil"] = $dados["perfil"];
-                            
+                                                        
                             header("Location: areaRestrita.php");
                             
                         }

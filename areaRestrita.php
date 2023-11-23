@@ -35,7 +35,14 @@
         <div class="center">
             <h1>Bazar Sustentável</h1>
             <p>Olá, <?php echo $_SESSION["unome"]; ?>!</p><br>
-            <p>Você possui X Senacoins.</p>
+            <p>Você possui 
+                <?php
+                    include_once("class/Usuario.php");
+                    $u = new Usuario();
+                    $u->buscarUsuario($_SESSION["uid"]);
+                    echo $u->getSaldo();
+                ?>
+            Senacoins.</p>
         </div>
         
 

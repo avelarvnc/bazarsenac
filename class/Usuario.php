@@ -6,6 +6,7 @@
         private $nome;
         private $email;
         private $perfil;
+        private $saldo;
         private $senha;
 
         public function __construct()
@@ -38,6 +39,16 @@
             $this->senha = md5($_senha);
         }
 
+        public function setSaldo($_saldo)
+        {
+            $this->saldo = $_saldo;
+        }
+
+        public function getSaldo()
+        {
+            return $this->saldo;
+        }
+
         public function inserirUsuario()
         {
             include_once("db/conn.php");
@@ -60,7 +71,7 @@
             try
             {
                 
-                include("./db/conn.php");
+                include("db/conn.php");
                 $sql = "SELECT * FROM usuario WHERE email = '$this->email' AND senha = '$this->senha'";
                 $stmt = $conn->prepare($sql);
 
@@ -113,6 +124,25 @@
             {
                 return 0;
             }
+        }
+
+        public function buscarUsuario($_id)
+        {
+            include("db/conn.php");
+
+            $sql = "SELECT * FROM usuario WHERE idUsuario = $_id";
+            $data = $conn->query($sql)->fetchAll();
+
+            foreach ($data as $item) {
+                $this->nome = $item["nome"];
+                $this->email = $item["email"];
+                $this->senha = $item["senha"];
+                $this->saldo = $item["saldo"];
+                $this->perfil = $item["perfil"];
+            }
+
+            return true;
+
         }
     }
 

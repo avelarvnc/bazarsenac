@@ -7,7 +7,7 @@
 
         public function __construct(){}
 
-        public function create($_nome, $_id)
+        public function create($_nome, $_valor)
         {
             $this->nome = $_nome;
             $this->valor = $_valor;
@@ -16,6 +16,21 @@
         public function getValor()
         {
             return $this->valor;
+        }
+
+        public function inserirCategoria()
+        {
+            include_once("db/conn.php");
+            $sql = "INSERT INTO categoria (nome, valor) VALUES (:nome, :valor)";
+
+            $data = [
+                'nome' => $this->nome,
+                'valor' => $this->valor
+            ];
+          
+            $statement = $conn->prepare($sql);
+            $statement->execute($data);
+            return true;
         }
 
         public function listarCategoria()

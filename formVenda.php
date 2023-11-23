@@ -129,7 +129,7 @@
                             $i = new Item();
                             $i->create($_REQUEST["quantidade"], $_REQUEST["categoria"], $_REQUEST["usuario"]);
 
-                            echo $i->venderItem($_SESSION["uid"]) == true
+                            echo $i->venderItem($_COOKIE["uid"]) == true
                                 ? "<p>Venda realizada</p>
                                     <script type='text/javascript'>
                                     alert('Venda realizada.');

@@ -48,10 +48,16 @@
                 <label for="email">E-mail:</label><br>
                 <input type="email" name="email" placeholder="Digite o e-mail corporativo do cliente" minlength="3" class="input-comum" required><br><br>
                 <label for="perfil">Perfil:</label><br>
-                <select name="perfil" class="input-comum">
+                <select name="perfilUsuario" class="input-comum">
                     <option value="">Selecione um perfil</option>
                     <option value="1">Cliente</option>
                     <option value="2">Colaborador</option>
+                </select><br><br>
+                <label for="perfil">Unidade:</label><br>
+                <select name="unidade" class="input-comum">
+                    <option value="">Selecione a UE</option>
+                    <option value="SAN">SAN</option>
+                    <option value="BER">BER</option>
                 </select><br><br>
                 <input type="submit" value="Cadastrar" name="cadastrar" class="botao-form" onclick="return confirmacao()">
 
@@ -60,7 +66,7 @@
                     {
                         include_once("class/Usuario.php");
                         $u = new Usuario();
-                        $u->create($_REQUEST["nome"], $_REQUEST["email"], $_REQUEST["perfil"]);
+                        $u->create($_REQUEST["nome"], $_REQUEST["email"], $_REQUEST["perfilUsuario"], $_REQUEST["unidade"]);
 
                         echo $u->inserirUsuario() == true
                             ? "<p>Usuário cadastrado</p>
@@ -89,6 +95,7 @@
                                     <th>Código</th>
                                     <th>Nome</th>
                                     <th>E-mail</th>
+                                    <th>UE</th>
                                     <th>Saldo</th>
                                 </tr>
                         ";
@@ -99,6 +106,7 @@
                             echo "<td>" . $i["idUsuario"] . "</td>";
                             echo "<td>" . $i["nome"] . "</td>";
                             echo "<td>" . $i["email"] . "</td>";
+                            echo "<td>" . $i["unidade"] . "</td>";
                             echo "<td>" . $i["saldo"] . "</td>";
                             echo "<td> <a href='ativarResetUsuario.php?uid=" . $i["idUsuario"] . "' onclick='return confirmacao()'>Redefinir senha</a></td>";                    
                             echo "</tr>";

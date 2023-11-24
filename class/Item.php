@@ -16,6 +16,11 @@
             $this->usuario = $_usuario;
         }
 
+        public function getQuantidade()
+        {
+            return $this->quantidade;
+        }
+
         public function inserirItem()
         {
             include("db/conn.php");
@@ -131,7 +136,7 @@
             }
         }
 
-        public function rankingDoacao()
+        public function rankingDoacao($_unidade)
         {
             try
             {
@@ -145,6 +150,7 @@
                 FROM item i 
                 JOIN usuario u ON u.idUsuario = i.idUsuario
                 JOIN categoria c ON c.idCategoria = i.idCategoria
+                WHERE u.unidade = '$_unidade'
                 GROUP BY u.nome ORDER BY 2 DESC LIMIT 3
                 ";
                 $data = $conn->query($sql)->fetchAll();
@@ -154,6 +160,28 @@
             catch (Exception $e)
             {
                 return 0;
+            }
+        }
+
+        public function totalDoacao()
+        {
+            try
+            {
+                
+                include("db/conn.php");
+                $sql = "SELECT SUM(quantidade) AS quantidade FROM item"; 
+                $stmt = $conn->prepare($sql);
+
+                $stmt->execute(); 
+                
+                $result = $stmt->fetch();
+                $this->quantidade = $result["quantidade"]; 
+                return true;        
+              
+            }
+            catch (Exception $e)
+            {
+                return false;
             }
         }
 

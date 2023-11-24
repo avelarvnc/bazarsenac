@@ -1,14 +1,14 @@
 <?php
 
-// $dbHost     = "localhost";
-// $dbUsername = "root";
-// $dbPassword = "";
-// $dbName     = "bazarsenac";
+$dbHost     = "localhost";
+$dbUsername = "root";
+$dbPassword = "";
+$dbName     = "bazarsenac";
 
-$dbHost     = "sql204.infinityfree.com";
-$dbUsername = "if0_35480709";
-$dbPassword = "nwXwRqSS81A";
-$dbName     = "if0_35480709_bazar";
+// $dbHost     = "sql204.infinityfree.com";
+// $dbUsername = "if0_35480709";
+// $dbPassword = "nwXwRqSS81A";
+// $dbName     = "if0_35480709_bazar";
 
 $conn = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUsername, $dbPassword);
 

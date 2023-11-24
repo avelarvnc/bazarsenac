@@ -87,10 +87,32 @@
 
             <div class="lista-dados">
                 <h2>Top 3 doadores</h2>
+                <h3>SAN</h3>
                 <?php
                     include_once("class/Item.php");
                     $i = new Item();
-                    $lista = $i->rankingDoacao();
+                    $lista = $i->rankingDoacao("SAN");
+
+                    if ($lista != 0)
+                    {
+                        echo "<ol>";
+                        foreach($lista as $i)
+                        {
+                            echo "<li>" . $i["nomeUsuario"] . " - Total de doações: " . $i["quantidade"] . "</li>";
+                        }
+                        echo "</ol>";                    
+                    }
+                    else
+                    {
+                        echo "<p>Ainda não há registros de doações</p>";
+                    }
+                    ?>
+
+                <h3>BER</h3>
+                <?php
+                    include_once("class/Item.php");
+                    $i = new Item();
+                    $lista = $i->rankingDoacao("BER");
 
                     if ($lista != 0)
                     {
@@ -100,10 +122,27 @@
                             echo "<li>" . $i["nomeUsuario"] . " - Total de doações: " . $i["quantidade"] . "</li>";
                         }
                         echo "</ol>";
-
-                    
                     }
+                    else
+                    {
+                        echo "<p>Ainda não há registros de doações</p>";
+                    }
+                    ?>
 
+                    <br><br>
+                    <?php
+                        include_once("class/Item.php");
+                        $i = new Item();
+                        
+                        if ($i->totalDoacao() == true)
+                        {
+                            echo "<p>Total de doações: <strong> " . $i->getQuantidade() . " </strong></p>";
+                        }
+                        else
+                        {
+                            echo "<p>Ainda não temos doações registradas.</p>";
+                        }
+        
                     ?>
 
                 <h2>Últimos itens doados</h2>

@@ -8,15 +8,17 @@
         private $perfil;
         private $saldo;
         private $senha;
+        private $unidade;
 
         public function __construct()
         {}
 
-        public function create($_nome, $_email, $_perfil)
+        public function create($_nome, $_email, $_perfil, $_unidade)
         {
             $this->nome = $_nome;
             $this->email = $_email;
             $this->perfil = $_perfil;
+            $this->unidade = $_unidade;
         }
 
         public function setNome($_nome)
@@ -52,13 +54,14 @@
         public function inserirUsuario()
         {
             include_once("db/conn.php");
-            $sql = "INSERT INTO usuario (nome, email, perfil, senha) VALUES (:nome, :email, :perfil, :senha )";
+            $sql = "INSERT INTO usuario (nome, email, perfil, senha, unidade) VALUES (:nome, :email, :perfil, :senha, :unidade )";
 
             $data = [
                 'nome' => $this->nome,
                 'email' => $this->email,
                 'perfil' => $this->perfil,
-                'senha' => md5("S3n@c2023")
+                'senha' => md5("S3n@c2023"),
+                'unidade' => $this->unidade
             ];
           
             $statement = $conn->prepare($sql);

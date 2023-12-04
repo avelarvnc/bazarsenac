@@ -21,6 +21,26 @@
             $this->unidade = $_unidade;
         }
 
+        public function getNome()
+        {
+            return $this->nome;
+        }
+
+        public function getEmail()
+        {
+            return $this->email;
+        }
+
+        public function getPerfil()
+        {
+            return $this->perfil;
+        }
+
+        public function getUnidade()
+        {
+            return $this->unidade;
+        }
+
         public function setNome($_nome)
         {
             $this->nome = $_nome;
@@ -68,6 +88,27 @@
             $statement->execute($data);
             return true;
         }
+
+        public function atualizarUsuario($_id)
+        {
+            include_once("db/conn.php");
+            $sql = "
+            UPDATE usuario SET nome = :nome, email = :email, perfil = :perfil, unidade = :unidade WHERE idUsuario = :id
+            INSERT INTO usuario (nome, email, perfil, senha, unidade) VALUES (:nome, :email, :perfil, :senha, :unidade )";
+
+            $data = [
+                'nome' => $this->nome,
+                'email' => $this->email,
+                'perfil' => $this->perfil,
+                'unidade' => $this->unidade,
+                'id' => $_id
+            ];
+          
+            $statement = $conn->prepare($sql);
+            $statement->execute($data);
+            return true;
+        }
+
 
         public function acessar()
         {

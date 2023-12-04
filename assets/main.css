@@ -21,19 +21,20 @@ header{
 }
 
 h1{
-    margin: 4% 0;
+    margin: 2% 0;
     font-size: 2rem;
     color: var(--cor-secundaria);
 }
 
 h2,h3
 {
-    margin: 4% 0;
+    margin: 2% 0;
     color: var(--cor-principal);
 }
 
 p, li{
-    line-height: 1.5;;
+    line-height: 1.5;
+    margin: 1% 0;
 }
 
 input
@@ -72,6 +73,20 @@ nav
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.flex-secundario
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    width: 50%;
+}
+
+.flex-secundario div{
+    width: 100%;
 }
 
 .logo

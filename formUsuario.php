@@ -38,6 +38,7 @@
 
     <main>
         <section class="flex-container">
+            <div class="flex-secundario">
             <div class="forms-internos">
             <h2>Cadastar novo usuário</h2>
 
@@ -45,8 +46,8 @@
                 
                 <label for="nome">Nome:</label><br>
                 <input type="text" name="nome" placeholder="Digite o nome do cliente" minlength="3" class="input-comum" required><br><br>
-                <label for="email">E-mail:</label><br>
-                <input type="email" name="email" placeholder="Digite o e-mail corporativo do cliente" minlength="3" class="input-comum" required><br><br>
+                <label for="email">Telefone:</label><br>
+                <input type="text" name="email" placeholder="Digite o telefone do usuário (sem DDD)" minlength="3" class="input-comum" required><br><br>
                 <label for="perfil">Perfil:</label><br>
                 <select name="perfilUsuario" class="input-comum">
                     <option value="">Selecione um perfil</option>
@@ -80,6 +81,39 @@
             </form>
             </div>
 
+            <div class="forms-internos">
+            <h2>Atualizar usuário</h2>
+
+            <form method="GET">
+                
+                <label for="nome">Código:</label><br>
+                <input type="text" name="codigo" placeholder="Digite o código do cliente" minlength="1" class="input-comum" style="width: 40%;">
+                <input type="submit" value="Buscar" name="buscar" class="botao-form" onclick="return confirmacao()">
+                <br><br>
+
+                <?php
+                    if (isset($_REQUEST["buscar"]))
+                    {
+                        include_once("class/Usuario.php");
+                        $u = new Usuario();
+                        $u->buscarUsuario($_REQUEST["codigo"]);
+
+                        if ($u == 0)
+                        {
+
+                        }
+                        else
+                        {
+                            header("Location: atualizarUsuario.php?uid=" . $_GET["codigo"]);
+                        }
+                    }
+                       
+                ?>
+            </form>
+            </div>
+    
+            </div>
+            
             <div class="lista-dados">
                 <h2>Usuários cadastrados</h2>
                 
@@ -94,7 +128,7 @@
                                 <tr>
                                     <th>Código</th>
                                     <th>Nome</th>
-                                    <th>E-mail</th>
+                                    <th>Telefone</th>
                                     <th>UE</th>
                                     <th>Saldo</th>
                                 </tr>
